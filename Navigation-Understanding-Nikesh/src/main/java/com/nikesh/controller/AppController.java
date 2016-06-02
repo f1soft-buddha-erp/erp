@@ -1,5 +1,6 @@
 package com.nikesh.controller;
 
+import com.nikesh.dao.UserMenuDAO;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller("/")
 public class AppController {
 
+    @Autowired
+    private UserMenuDAO dao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String showCreateProfile() {
+        System.out.println(dao.getAllPossibleMenus());
         return "create_profile";
     }
 
