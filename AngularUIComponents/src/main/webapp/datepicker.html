@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Datepicker UI</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+
+        <script src="static/js/app.js"></script>
+
+        <script src="static/js/controllers/DatePickerCtrl.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="DatePickerCtrl">
+        The date is <i>{{myDate| date:'fullDate'}}</i>
+
+        <form>
+
+            <p class="input-group col-md-3">
+                <input type="text" class="form-control" is-open="opened" ng-required="true" ng-model="myDate" uib-datepicker-popup="{{format}}" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+
+            <input type="submit" />
+        </form>
+
+
+    </body>
+</html>
