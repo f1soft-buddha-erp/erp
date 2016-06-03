@@ -22,4 +22,13 @@ app.controller('DatePickerCtrl', function ($scope) {
     $scope.open = function () {
         $scope.opened = true;
     };
+
+    $scope.getDateString = function () {
+        alert($scope.myDate.getFullYear() + "-" + ($scope.myDate.getMonth() + 1) + "-" + $scope.myDate.getDate());
+    };
+
+    /** NOT NECESSARY **/
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.fmt = $scope.formats[0];
+    $scope.altInputFormats = ['M!/d!/yyyy'];
 });
