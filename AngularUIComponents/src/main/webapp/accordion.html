@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accordion</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+
+        <script src="static/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
+
+
+        <script src="static/js/app.js"></script>
+
+        <script src="static/js/controllers/AccordionCtrl.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="AccordionCtrl">
+    <uib-accordion close-others="true" class="accordion">
+        <uib-accordion-group panel-class="panel-primary" ng-repeat="menu in menus" heading="{{menu.parent}}">
+            <ul>
+                <a ng-repeat="child in menu.children" href="{{child.link}}">
+                    <li>{{child.name}}</li>
+                </a>
+            </ul>
+        </uib-accordion-group>
+    </uib-accordion>
+</body>
+</html>
