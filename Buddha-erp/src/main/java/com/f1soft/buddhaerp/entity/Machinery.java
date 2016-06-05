@@ -33,15 +33,15 @@ public class Machinery implements Serializable {
     private String machineType;
 
     @Column(name = "acquired_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date acquiredDate;
 
     @Column(name = "maintenance_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date maintenanceDate;
 
     @Column(name = "last_maintenance_date", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date lastMaintenanceDate;
 
     @Column(name = "maintenance_cycle_per_year", nullable = false)
