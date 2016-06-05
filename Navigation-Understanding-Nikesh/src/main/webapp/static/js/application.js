@@ -1,3 +1,1 @@
-var app = angular.module('app', []);
-
-alert("hello");
+var app = angular.module('myApp', []);

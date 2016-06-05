@@ -22,8 +22,9 @@ public class AppController {
         System.out.println(dao.getAllPossibleMenus());
         return "create_profile";
     }
-    @RequestMapping(method=RequestMethod.GET, value="/navigation")
-    public String showNavPage(){
+
+    @RequestMapping(method = RequestMethod.GET, value = "/navigation")
+    public String showNavPage() {
         return "navigation";
     }
 
