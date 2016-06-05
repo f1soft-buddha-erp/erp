@@ -1,6 +1,7 @@
 package com.f1soft.buddhaerp.configuration;
 
-import javax.persistence.EntityManagerFactory;
+import java.util.Properties;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,45 +10,73 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
  * @author nikesh.maharjan
  */
 @Configuration
-//@EnableJpaRepositories("com.f1soft.buddhaerp.repository")
+@EnableJpaRepositories("com.f1soft.buddhaerp.repository")
+@EnableTransactionManagement
 @PropertySource(value = "classpath:application.properties")
 public class DataSourceConfig {
 
-    @Autowired
+    private static final String PROPERTY_NAME_DATABASE_DRIVER = "connection.driverClass";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "connection.pass";
+    private static final String PROPERTY_NAME_DATABASE_URL = "connection.url";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "connection.user";
+
+    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
+    private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+    private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
+
+    @Resource
     private Environment env;
 
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setUrl(env.getProperty("connection.url"));
-        dataSource.setUsername(env.getProperty("connection.user"));
-        dataSource.setPassword(env.getProperty("connection.pass"));
-        dataSource.setDriverClassName(env.getProperty("connection.driverClass"));
+        dataSource.setUrl(env.getProperty(PROPERTY_NAME_DATABASE_URL));
+        dataSource.setUsername(env.getProperty(PROPERTY_NAME_DATABASE_USERNAME));
+        dataSource.setPassword(env.getProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+        dataSource.setDriverClassName(env.getProperty(PROPERTY_NAME_DATABASE_DRIVER));
 
         return dataSource;
     }
 
-    /*@Bean
-    public EntityManagerFactory entityManagerFactory() {
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(getDataSource());
 
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
+        entityManagerFactoryBean.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
 
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.f1soft.buddhaerp.entity");
-        factory.setDataSource(getDataSource());
-        factory.afterPropertiesSet();
+        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+        entityManagerFactoryBean.setJpaProperties(hibProperties());
 
-        return factory.getObject();
-    }*/
+        return entityManagerFactoryBean;
+    }
+
+    private Properties hibProperties() {
+        Properties properties = new Properties();
+        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        return properties;
+    }
+
+    @Bean(name = "transactionManager")
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return transactionManager;
+    }
+
 }
