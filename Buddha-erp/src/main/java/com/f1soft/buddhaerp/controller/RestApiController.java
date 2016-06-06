@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -33,7 +37,38 @@ public class RestApiController {
         if (allMachinery == null) {
             return new ResponseEntity<>(allMachinery, HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(allMachinery, HttpStatus.OK);
+            return new ResponseEntity<>(allMachinery, HttpStatus.FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/machinery/add", method = POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Machinery> addMachinery(@RequestBody Machinery machinery) {
+        System.out.println(machinery);
+        if (machinery == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            machineryService.saveMachinery(machinery);
+            return new ResponseEntity<>(machinery, HttpStatus.CREATED);
+        }
+    }
+
+    @RequestMapping(value = "/machinery/delete/{id}", method = DELETE)
+    public ResponseEntity<Long> deleteMachinery(@PathVariable long id) {
+        long deleteMachinery = machineryService.deleteMachinery(id);
+        if (deleteMachinery == id) {
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/machinery/{id}", method = GET)
+    public ResponseEntity<Machinery> getMachineryById(@PathVariable long id) {
+        Machinery m = machineryService.findById(id);
+        if (m == null) {
+            return new ResponseEntity<>(m, HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(m, HttpStatus.FOUND);
         }
     }
 
@@ -45,6 +80,12 @@ public class RestApiController {
         } else {
             return new ResponseEntity<>(findAll, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping(value = "/names/add", method = POST)
+    public ResponseEntity<Name> addName(@RequestBody Name name) {
+        nameRepo.save(name);
+        return new ResponseEntity<>(name, HttpStatus.OK);
     }
 
 }

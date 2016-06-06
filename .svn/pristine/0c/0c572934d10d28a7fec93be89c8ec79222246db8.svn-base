@@ -1,0 +1,16 @@
+0000000000000000000000000000000000000000 74acdbb8e76f496d45e5388cf93098abf868c897 Nikesh Maharjan <nikeshmhr@gmail.com> 1464857278 +0545	commit (initial): Base project structure setup
+74acdbb8e76f496d45e5388cf93098abf868c897 2af4acebbfeba6c1571279f0b227de3b5545bc88 Nikesh Maharjan <nikeshmhr@gmail.com> 1464858766 +0545	commit: Understanding navigation initial commit
+2af4acebbfeba6c1571279f0b227de3b5545bc88 cfe9a91217331da71c8160eb4cb5277bb154c234 Nikesh Maharjan <nikeshmhr@gmail.com> 1464862506 +0545	commit: Navigation Configuration
+cfe9a91217331da71c8160eb4cb5277bb154c234 dce1e27193536d01d63a2236b400094835603eba Nikesh Maharjan <nikeshmhr@gmail.com> 1464866695 +0545	commit: All possible menu retrival logic done
+dce1e27193536d01d63a2236b400094835603eba e8a78de7c521859b4a7e17f8419f0828f7cbccbb Nikesh Maharjan <nikeshmhr@gmail.com> 1464867398 +0545	commit: Menu List retrival using rest controller and json format done
+e8a78de7c521859b4a7e17f8419f0828f7cbccbb 0f89176cef927d186f608247bf1149b1cd798ed1 Nikesh Maharjan <nikeshmhr@gmail.com> 1464870032 +0545	commit: Problem with js
+0f89176cef927d186f608247bf1149b1cd798ed1 865c20494b4fe703fdf554cb1a7961945ab63f66 Nikesh Maharjan <nikeshmhr@gmail.com> 1464932917 +0545	commit: Accordion
+865c20494b4fe703fdf554cb1a7961945ab63f66 2049fb97eed1aa870edf73c9513be738c80bfd49 Nikesh Maharjan <nikeshmhr@gmail.com> 1464944177 +0545	commit: Grid UI
+2049fb97eed1aa870edf73c9513be738c80bfd49 82046f01e297071077e7a3100f86149b05ca1ec7 Nikesh Maharjan <nikeshmhr@gmail.com> 1464949740 +0545	commit: Datepicker
+82046f01e297071077e7a3100f86149b05ca1ec7 87a3d1b4f0db89b60233ad9e953db459a40daca6 Nikesh Maharjan <nikeshmhr@gmail.com> 1464950497 +0545	commit: Application properties file created and added database connection properties
+87a3d1b4f0db89b60233ad9e953db459a40daca6 f7caac70a43145ca5a440390fc2e441068ae5d78 Nikesh Maharjan <nikeshmhr@gmail.com> 1464952828 +0545	commit: Time picker
+f7caac70a43145ca5a440390fc2e441068ae5d78 2991e4086dfb8841f00bc01d1134f66f514c0caa Nikesh Maharjan <nikeshmhr@gmail.com> 1465101020 +0545	commit: Problem in Navigation-Understanding-Nikesh need solution
+2991e4086dfb8841f00bc01d1134f66f514c0caa 68e7040db46101ca5d7237e3ad63ecd4f8410291 Nikesh Maharjan <nikeshmhr@gmail.com> 1465109692 +0545	commit: Initial project setup
+68e7040db46101ca5d7237e3ad63ecd4f8410291 9fb668053dbf57108ffaea78db1aa412b0640448 Nikesh Maharjan <nikeshmhr@gmail.com> 1465111546 +0545	commit: Project configuration up and running
+9fb668053dbf57108ffaea78db1aa412b0640448 59a515c39ba0c5584d7026bed9c803883ed6e3d8 Nikesh Maharjan <nikeshmhr@gmail.com> 1465128643 +0545	commit: Machinery retrival API up and running
+59a515c39ba0c5584d7026bed9c803883ed6e3d8 ef17abdcb25947e0cd0369810eddd3874987954b Nikesh Maharjan <nikeshmhr@gmail.com> 1465128886 +0545	commit: Temporal.TIMESTAMP changed to Temporal.DATE in machinery

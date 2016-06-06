@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timerpicker UI</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+
+        <script src="static/js/app.js"></script>
+
+        <script src="static/js/controllers/TimepickerCtrl.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="TimepickerCtrl">
+        <pre>The time is &nbsp;{{time| date: 'shortTime'}}</pre>
+    <uib-timepicker ng-model="time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+    <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
+</body>
+</html>

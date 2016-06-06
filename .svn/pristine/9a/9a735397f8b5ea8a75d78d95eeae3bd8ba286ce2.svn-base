@@ -1,0 +1,12 @@
+com\f1soft\buddhaerp\entity\Machinery.class
+com\f1soft\buddhaerp\configuration\DataSourceConfig.class
+com\f1soft\buddhaerp\service\MachineryService.class
+com\f1soft\buddhaerp\serviceimpl\MachineryServiceImpl.class
+com\f1soft\buddhaerp\controller\RestApiController.class
+com\f1soft\buddhaerp\controller\WebAppController.class
+com\f1soft\buddhaerp\configuration\RootConfig.class
+com\f1soft\buddhaerp\repository\NameRepository.class
+com\f1soft\buddhaerp\configuration\WebAppInitializer.class
+com\f1soft\buddhaerp\configuration\WebConfig.class
+com\f1soft\buddhaerp\entity\Name.class
+com\f1soft\buddhaerp\repository\MachineryRepository.class

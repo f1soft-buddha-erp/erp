@@ -21,6 +21,42 @@ app.factory('MachineryService', ['$http', '$q', function ($http, $q) {
                                     return $q.reject(errResponse);
                                 }
                         );
+            },
+            addMachinery: function (m) {
+                return $http.post('http://localhost:9090/BuddhaErp/api/machinery/add', m)
+                        .then(
+                                function (response) {
+                                    console.log("SUCCESS ADDING MACHINERY");
+                                },
+                                function (errResponse) {
+                                    console.log("FAILED TO ADD MACHINERY");
+                                    return $q.reject(errResponse);
+                                }
+                        );
+            },
+            deleteMachinery: function (id) {
+                return $http.delete('http://localhost:9090/BuddhaErp/api/machinery/delete/' + id)
+                        .then(
+                                function (response) {
+                                    console.log("MACHINERY DELETION SUCCESS");
+                                },
+                                function (errResponse) {
+                                    console.log("FAILED TO DELETE MACHINERY");
+                                    return $q.reject(errResponse);
+                                }
+                        );
+            },
+            fetchMachineryById: function (id) {
+                return $http.get('http://localhost:9090/BuddhaErp/api/machinery/' + id)
+                        .then(
+                                function (response) {
+                                    console.log("MACHINERY FOUND BY ID.");
+                                },
+                                function (errResponse) {
+                                    console.log("MACHINERY NOT FOUND BY ID.");
+                                    return $q.reject(errResponse);
+                                }
+                        );
             }
         };
     }]);

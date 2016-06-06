@@ -11,4 +11,9 @@ public interface MachineryService {
 
     List<Machinery> getAllMachinery();
 
+    Machinery saveMachinery(Machinery m);
+
+    long deleteMachinery(long id);
+
+    Machinery findById(long id);
 }

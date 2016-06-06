@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>UI Components</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>List of UI components</div>
+
+        <ul>
+            <li><a href="accordion.html">Accordion</a></li>
+            <li><a href="grid-ui.html">Grid</a></li>
+            <li><a href="datepicker.html">Date Picker</a></li>
+            <li><a href="timepicker.html">Time Picker</a></li>
+        </ul>
+    </body>
+</html>

@@ -22,4 +22,21 @@ public class MachineryServiceImpl implements MachineryService {
         return repository.findAll();
     }
 
+    @Override
+    public Machinery saveMachinery(Machinery m) {
+        return repository.save(m);
+    }
+
+    @Override
+    public long deleteMachinery(long id) {
+        repository.delete(id);
+        return id;
+    }
+
+    @Override
+    public Machinery findById(long id) {
+        Machinery findOne = repository.findOne(id);
+        return findOne;
+    }
+
 }
