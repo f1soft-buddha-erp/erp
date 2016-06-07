@@ -1,0 +1,153 @@
+package com.f1soft.buddhaerp.controller;
+
+import com.f1soft.buddhaerp.entity.Machinery;
+import com.f1soft.buddhaerp.entity.Name;
+import com.f1soft.buddhaerp.repository.NameRepository;
+import com.f1soft.buddhaerp.request.dto.MachineryRequestDTO;
+import com.f1soft.buddhaerp.response.dto.MachineryResponseDTO;
+import com.f1soft.buddhaerp.service.MachineryService;
+import com.f1soft.buddhaerp.utility.MachineryParser;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.ManagedList;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ *
+ * @author nikesh.maharjan
+ */
+@RestController
+@RequestMapping("/api")
+public class RestApiController {
+
+    @Autowired
+    private MachineryService machineryService;
+
+    @Autowired
+    private NameRepository nameRepo;
+
+    /**
+     * The method that helps to retrieve list of all the machinery available.
+     *
+     * @return The List of Machinery object.
+     */
+    @RequestMapping(value = "/machinery/list", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<MachineryResponseDTO>> getAllMachinery() {
+        List<Machinery> allMachinery = machineryService.getAllMachinery();
+        List<MachineryResponseDTO> allMachineryDTO = new ArrayList<>();
+        for (Machinery machinery : allMachinery) {
+            allMachineryDTO.add(MachineryParser.parseToMachineryResponse(machinery));
+        }
+        if (allMachineryDTO.isEmpty()) {
+            return new ResponseEntity<>(allMachineryDTO, HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(allMachineryDTO, HttpStatus.OK);
+        }
+    }
+
+    /**
+     * The method helps to add the new machinery information to the system.
+     *
+     * @param machinery The MachineryResponseDTO object that is to be added.
+     * @return The ResponseEntity object with MachinerResponseDTO object and
+     * status code.
+     */
+    @RequestMapping(value = "/machinery/add", method = POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<MachineryResponseDTO> addMachinery(@RequestBody MachineryRequestDTO machinery) {
+        MachineryResponseDTO responseDTO = new MachineryResponseDTO();
+        if (machinery == null) {
+            responseDTO = MachineryParser.parseToMachineryResponse(machinery);
+            return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+        } else {
+            Machinery m = MachineryParser.parseToMachinery(machinery);
+
+            Machinery savedMachinery = machineryService.saveMachinery(m);
+
+            responseDTO = MachineryParser.parseToMachineryResponse(savedMachinery);
+
+            return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        }
+    }
+
+    /**
+     * The method to delete the existing machinery from the system.
+     *
+     * @param id The id of Machinery to delete.
+     * @return The id of the deleted machinery with HttpStatus code.
+     */
+    @RequestMapping(value = "/machinery/delete/{id}", method = DELETE)
+    public ResponseEntity<Long> deleteMachinery(@PathVariable long id) {
+        long deleteMachinery = machineryService.deleteMachinery(id);
+        if (deleteMachinery == id) {
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+    }
+
+    /**
+     * The method to find the Machinery by its id.
+     *
+     * @param id The id of Machinery to search for.
+     * @return The ResponseEntity with Machinery object and HttpStatus code in
+     * it.
+     */
+    @RequestMapping(value = "/machinery/{id}", method = GET)
+    public ResponseEntity<Machinery> getMachineryById(@PathVariable long id) {
+        Machinery m = machineryService.findById(id);
+        if (m == null) {
+            return new ResponseEntity<>(m, HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+    }
+
+    /**
+     * The method to update the existing machinery information.
+     *
+     * @param machinery The machinery object with new information in it.
+     * @return The updated machinery object with the HttpStatus code.
+     */
+    @RequestMapping(value = "/machinery/update", method = POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Machinery> updateMachinery(@RequestBody Machinery machinery) {
+        Machinery updateMachinery = machineryService.updateMachinery(machinery);
+        if (updateMachinery == null) {
+            return new ResponseEntity<>(updateMachinery, HttpStatus.NOT_MODIFIED);
+        } else {
+            return new ResponseEntity<>(updateMachinery, HttpStatus.OK);
+        }
+    }
+
+    /**
+     * DUMMY METHODS
+     *
+     *
+     * @return
+     */
+    @RequestMapping(value = "/names", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Name>> getAllNames() {
+        List<Name> findAll = nameRepo.findAll();
+        if (findAll == null) {
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(findAll, HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/names/add", method = POST)
+    public ResponseEntity<Name> addName(@RequestBody Name name) {
+        nameRepo.save(name);
+        return new ResponseEntity<>(name, HttpStatus.OK);
+    }
+
+}

@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+    <p>
+        {{modalOptions.bodyText}}
+        <br/>
+        Remarks: <textarea name="remarks" ng-model ="ctrl.user.deleteRemarks" ></textarea>
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" data-ng-click="modalOptions.close()" >
+        {{modalOptions.closeButtonText}}
+    </button>
+    <button type="button" data-ng-click="modalOptions.ok()">
+        {{modalOptions.actionButtonText}}
+    </button>
+</div>

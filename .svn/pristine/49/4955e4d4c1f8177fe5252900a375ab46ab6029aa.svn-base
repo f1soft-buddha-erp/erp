@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <h3 class="modal-title">I'm a modal!</h3>
+</div>
+<div class="modal-body">
+    <table class="table">
+        <tr>
+            <td><label for="machineryName">Machine Name</label></td>
+            <td>
+                <input type="text" name="name" ng-required="true" class="form-control" ng-model="machinery.machineName" />
+            </td>
+            <td>
+                <span class="error" ng-show="addMachineryForm.name.$error.required && addMachineryForm.name.$touched">Required.</span>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="machineType">Machine Type</label></td>
+            <td><input type="text" required class="form-control" ng-model="machinery.machineType" /></td>
+        </tr>
+        <tr>
+            <td><label for="acquiredDate">Acquired Date</label></td>
+            <td>
+                <p class="input-group">
+                    <input type="text" required class="form-control" is-open="acquiredDateOpened" ng-required="true"
+                           ng-model="machinery.acquiredDate" uib-datepicker-popup="{{dateformat}}" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="acquiredDateOpened = !acquiredDateOpened"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="maintenanceDate">Maintenance Date</label></td>
+            <td>
+                <p class="input-group">
+                    <input type="text" required class="form-control" is-open="maintenanceDateOpened" ng-required="true"
+                           ng-model="machinery.maintenanceDate" uib-datepicker-popup="{{dateFormat}}" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="maintenanceDateOpened = !maintenanceDateOpened"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="lastMaintenanceDate">Last Maintenance Date</label></td>
+            <td>
+                <p class="input-group">
+                    <input type="text" required class="form-control" is-open="lastMaintenanceDateOpened" ng-required="false"
+                           ng-model="machinery.lastMaintenanceDate" ng-value="0" uib-datepicker-popup="{{dateFormat}}" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="lastMaintenanceDateOpened = !lastMaintenanceDateOpened"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="maintenanceCycle">Maintenance Cycle per year</label></td>
+            <td>
+                <input type="number" class="form-control" ng-model="machinery.maintenanceCyclePerYear" min="1" required />
+            </td>
+        </tr>
+        <tr>
+            <td><label for="active">Active</label></td>
+            <td>
+                <!--<select class="form-control" ng-model="machineryData.active" required="required"> <!--ng-options="a for a in activeStatus"
+                    <option ng-repeat="status in activeStatus" ng-value="status">{{displayActiveStatus(status)}}</option>
+                </select>-->
+                <label ng-repeat="status in activeStatus">
+                    <input type="radio" required name="activeStatus" ng-value="status" ng-model="machinery.active" />
+                    {{displayActiveStatus(status)}}
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="assignedTo">Assigned To</label></td>
+            <td>
+                <select class="form-control" ng-model="machinery.assignedTo">
+                    <option ng-repeat="farmer in farmersList" ng-value="{{farmer.id}}">{{farmer.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="acquisitionCost">Acquisition Cost</label></td>
+            <td><input type="number" ng-model="machinery.acquisitionCost" min="1" required class="form-control" /></td>
+        </tr>
+        <tr>
+            <td><label for="registrationNo">Registration No.</label></td>
+            <td><input type="text" ng-model="machinery.registrationNo" required class="form-control" /></td>
+        </tr>
+        <tr>
+            <td><label for="companyName">Company Name</label></td>
+            <td><input type="text" ng-model="machinery.machineCompanyName" required class="form-control" /></td>
+        </tr>
+        <tr>
+            <td><label for="depreciationRate">Depreciation Rate</label></td>
+            <td><input type="number" ng-model="machinery.depreciationRate" min="1" required class="form-control" /></td>
+        </tr>
+        <tr>
+            <td><label for="currentValue">Current Value</label></td>
+            <td><input type="number" ng-model="machinery.currentValue" min="1" required class="form-control" /></td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
