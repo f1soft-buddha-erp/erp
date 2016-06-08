@@ -1,0 +1,78 @@
+<div class="modal-header">
+    <h3 class="modal-title">Machinery Info.</h3>
+</div>
+<div class="modal-body">
+    <table class="table">
+        <tr>
+            <td><label for="machineryName">Machine Name</label></td>
+            <td>
+                {{machinery.machineName}}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="machineType">Machine Type</label></td>
+            <td>{{machinery.machineType}}</td>
+        </tr>
+        <tr>
+            <td><label for="acquiredDate">Acquired Date</label></td>
+            <td>
+                {{machinery.acquiredDate| date}}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="maintenanceDate">Maintenance Date</label></td>
+            <td>
+                {{machinery.maintenanceDate| date}}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="lastMaintenanceDate">Last Maintenance Date</label></td>
+            <td>
+                {{machinery.lastMaintenanceDate| date}}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="maintenanceCycle">Maintenance Cycle per year</label></td>
+            <td>
+                {{machinery.maintenanceCyclePerYear}}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="active">Active</label></td>
+            <td>
+                {{displayActiveStatus(machinery.active)}}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="assignedTo">Assigned To</label></td>
+            <td>
+                <span ng-repeat="farmer in farmersList">
+                    <span ng-show="farmer.id === machinery.assignedTo">{{farmer.name}}</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="acquisitionCost">Acquisition Cost</label></td>
+            <td>{{machinery.acquisitionCost}}</td>
+        </tr>
+        <tr>
+            <td><label for="registrationNo">Registration No.</label></td>
+            <td>{{machinery.registrationNo}}</td>
+        </tr>
+        <tr>
+            <td><label for="companyName">Company Name</label></td>
+            <td>{{machinery.machineCompanyName}}</td>
+        </tr>
+        <tr>
+            <td><label for="depreciationRate">Depreciation Rate</label></td>
+            <td>{{machinery.depreciationRate}}</td>
+        </tr>
+        <tr>
+            <td><label for="currentValue">Current Value</label></td>
+            <td>{{machinery.currentValue}}</td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="cancel()">Back</button>
+</div>

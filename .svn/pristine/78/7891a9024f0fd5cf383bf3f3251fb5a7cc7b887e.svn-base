@@ -1,0 +1,15 @@
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\configuration\WebAppInitializer.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\entity\Name.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\configuration\WebConfig.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\controller\WebAppController.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\repository\NameRepository.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\configuration\DataSourceConfig.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\controller\RestApiController.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\serviceimpl\MachineryServiceImpl.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\entity\Machinery.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\request\dto\MachineryRequestDTO.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\utility\MachineryParser.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\repository\MachineryRepository.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\configuration\RootConfig.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\response\dto\MachineryResponseDTO.java
+D:\buddha-erp\Nikesh\Buddha-erp\src\main\java\com\f1soft\buddhaerp\service\MachineryService.java
